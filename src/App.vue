@@ -1,15 +1,39 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <feedback-template
+     v-for="fb in feedbacks"
+    :key="fb.email" 
+    :email = "fb.email" 
+    :comment ="fb.comment">
+    </feedback-template>
+  </div>
+
+  <div>
+    <new-feedback @add-feedback="addFeedback"></new-feedback>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      feedbacks: [
+        {
+          email: "justFirstSampleDummy@email.com",
+          comment: " Initial Dummy comment"
+        }
+      ]
+    }
+  },
+  methods: {
+    addFeedback(email, comment){
+      const newFeedback = {
+        email: email,
+        comment: comment,
+      } 
+      this.feedbacks.push(newFeedback);
+    }
   }
 }
 </script>
