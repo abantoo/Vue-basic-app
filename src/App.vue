@@ -8,10 +8,10 @@
   <div>
    
     <feedback-template
-     v-for="fb in feedbacks"
-    :key="fb.email" 
-    :email = "fb.email" 
-    :comment ="fb.comment">
+      v-for="fb in feedbacks"
+      :key="fb.email" 
+      :email = "fb.email" 
+      :comment ="fb.comment">
     </feedback-template>
   </div>
 
