@@ -10,8 +10,12 @@
     <feedback-template
       v-for="fb in feedbacks"
       :key="fb.email" 
+      :name = "fb.name"
       :email = "fb.email" 
-      :comment ="fb.comment">
+      :comment ="fb.comment"
+      :is-starred = "fb.isStarred"
+      @toggle-starred="toggleStarredStatus"
+      >
     </feedback-template>
   </div>
 
@@ -32,20 +36,29 @@ export default {
       feedbacks: [
         {
           email: "justFirstSampleDummy@email.com",
-          comment: " Initial Dummy comment"
+          name:"Dummy",
+          comment: " Initial Dummy comment",
+          isStarred: false
         }
       ]
     }
   },
   methods: {
-    addFeedback(email, comment){
+    addFeedback(email, name, comment){
       const newFeedback = {
         email: email,
+        name:name,
         comment: comment,
       } 
       this.feedbacks.push(newFeedback);
+    },
+    toggleStarredStatus(emailAddress) {
+      const toBeStarred = this.feedbacks.find( feedback => feedback.email === emailAddress);
+      toBeStarred.isStarred = !toBeStarred.isStarred
+
     }
-  }
+
+  } 
 }
 </script>
 

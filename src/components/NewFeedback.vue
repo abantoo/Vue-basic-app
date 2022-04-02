@@ -2,13 +2,14 @@
 <div class="form-div">
     <form @submit.prevent="submitFeedback" class="sbmt-fb">
         <div>
-            <input type="email" v-model="enteredEmail">
+            <input type="email" placeholder="email@email.com" v-model="enteredEmail">
         </div>
-
         <div>
-            <input type="text" v-model="enteredComment">
+            <input type="text" placeholder="name" v-model="enteredName">
         </div>
-
+        <div>
+            <input type="text" placeholder="comment" v-model="enteredComment">
+        </div>
         <div>
             <button>Add Feedback</button>
         </div>
@@ -25,15 +26,16 @@ export default {
     data() {
         return {
             enteredEmail: "",
+            enteredName: "",
             enteredComment: ""
-
         };
     },
     
     methods: {
         submitFeedback() {
-            this.$emit("add-feedback",this.enteredEmail, this.enteredComment);
+            this.$emit("add-feedback",this.enteredEmail,this.enteredName, this.enteredComment);
             this.enteredEmail = "";
+            this.enteredName = "";
             this.enteredComment = "";
         },
     },
